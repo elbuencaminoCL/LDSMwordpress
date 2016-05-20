@@ -26,59 +26,6 @@
 				} 
 			?>
 
-			<?php
-                $args = array(
-                    'post_type'      => 'horarios',
-                    'posts_per_page' => -1
-                );
-                $loop = new WP_Query( $args );
-                echo '<div id="buscador-guias">';
-                if ( $loop->have_posts() ) {
-                ?>
-                	<div class="container clearfix">
-						<div class="row">
-							<div class="col-md-4 col-sm-12 col-xs-12"><h2 class="upper text-right">Horarios de clases</h2></div>
-							<div class="col-md-4 col-sm-12 col-xs-12">
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle t-lato" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										Seleccione un curso para ver los horarios
-										<span class="glyphicon glyphicon-menu-down"></span>
-									</button>
-				                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				                        get_custom_terms('horarios-cursos', $args_custom);
-				                    </ul>
-				                </div>
-				            </div>
-				            <div class="col-md-4 col-sm-12 col-xs-12">
-								<a class="btn btn-primary btn-md btn-block btn-buscar" href="guias_seleccion.html" role="button">BUSCAR</a>
-							</div>
-				                    <? 
-				                    	while ( $loop->have_posts() ) : $loop->the_post();
-					                        $terms = get_the_terms( $post->ID, 'horarios-cursos' );
-					                        if ( !empty( $terms ) ){
-				                                echo '<div class="mix col-lg-4 col-md-4 col-sm-4 col-xs-12';
-					                                $i = 1; $terms_size = count($terms_size) - 1;
-												    foreach($terms as $term){
-											            $term = array_shift( $terms );
-											            echo ' '.$term->slug;
-											            $i++; 
-											        }
-												echo '" data-myorder="'.$i.'">';
-				                                    echo '<a href="'.get_the_permalink().'">'.get_the_post_thumbnail($post->ID, 'gal', array('class' => 'img-responsive')).'</a>';
-				                                echo '</div>';
-				                            }
-				                        endwhile;
-				                        } else {
-				                                echo __( 'No se han encontrado Horarios' );
-				                        }
-				                    ?>
-		                </div>
-		            </div>
-                <? 
-                wp_reset_postdata();
-                echo '</div>';
-            ?>
-
 			<div id="buscador-guias">
 				<div class="container clearfix">
 					<div class="row">

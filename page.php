@@ -15,30 +15,22 @@
 				?>
 			</div>
 
-			<div class="container departamento">
-				<div class="row">
-					<?php
-						global $post;
-						if ( has_excerpt( $post->ID ) ) {
-							$excerpt= apply_filters('the_excerpt', get_post_field('post_excerpt', $post->ID));
-						    echo '<div class="clearfix">';
-								echo '<h2 class="intro-3">'.$excerpt.'</h3>';
-							echo '</div>';
-						} 
-					?>
-					<div class="clearfix descripcion">
-						<?php
-							if ( has_post_thumbnail() ) {
-								echo '<div class="col-sm-6 col-xs-12">';
-								    echo get_the_post_thumbnail($post->ID, 'generica', array('class' => 'img-responsive'));
-								echo '</div>';
-							}
-						?>
-						<? the_content();?>
+			<div class="row">
+					<div class="container relative">
+						<div id="desc-departamento" class="clearfix row">
+							<?php
+								if ( has_post_thumbnail() ) {
+									echo '<div class="img-responsive">';
+								    	echo get_the_post_thumbnail($post->ID, 'generica', array('class' => 'img-responsive'));
+								    echo '</div>';
+								}
+							?>
+							<? the_content();?>
+						</div>
+
+						<? include_once('modulos/descargas.php');?>
 					</div>
-				</div>		
-				<? include_once('modulos/descargas.php');?>			
-			</div>
+				</div>
 		<?php endwhile; else: ?>
             <div class="col-xs-12">
                 <p class="textos">Lo sentimos, el contenido que buscas no se encuentra disponible.</p>

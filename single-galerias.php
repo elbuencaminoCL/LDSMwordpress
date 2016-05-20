@@ -1,48 +1,34 @@
 <?php get_header(); ?>	
-	<div id="main" class="clearfix">
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<?
-				$gal = get_page_by_path('nuestro-colegio/galeria-multimedia');
-			?>
+	<!--main-->
+		<div id="main" class="clearfix">
+
+			<!--NUEVO-ENCABEZADO CON IMAGEN Y TÍTULO-->
 			<div id="foto-encabezado" class="absolute">
-				<?php 
-					$image = get_field('_cabecera', $gal);
-					$size = 'encabezado'; 
-					if($image) {
-						echo wp_get_attachment_image( $image, $size );
-					}
-				?>
-		    </div>
-			<h2 class="titulo-seccion center relative"><span><? echo get_the_title($gal);?></span></h2>
+				<img class="img-responsive" src="img/slider.jpg">
+			</div>
+			<h2 class="titulo-seccion center relative"><span>GALERÍA MULTIMEDIA</span></h2>
+			<!--/FIN ENCABEZADO CON IMAGEN Y TÍTULO-->
 
 			<div class="container relative galeria-detalle">
 				<div class="row">
+
 					<div class="col-md-9 col-xs-12">
-						<h1 class="upper"><? the_title();?></h1>
+
+						<h1 class="upper">INICIO SUMMER CAMP 2016</h1>
 						<div class="col-lg-12">
 							<div class="row">
-								<div class="col-sm-3 datos-ficha-galeria"><span class="glyphicon glyphicon-calendar"></span><? echo get_the_date();?></div>
-								<div class="col-sm-3 upper datos-ficha-galeria">
-									<?
-										$terms = get_the_terms( $post->ID, 'galerias-multimedia' );
-										if($terms){
-											foreach($terms as $term){
-									            $term = array_shift( $terms );
-									            echo '| '.$term->name;
-									        }
-										}
-									?>
-								</div>
+								<div class="col-sm-3 datos-ficha-galeria"><span class="glyphicon glyphicon-calendar"></span>17 de Enero del 2016</div>
+								<div class="col-sm-3 upper datos-ficha-galeria">| Categoria 1</div>
 							</div>
 						</div>
 
-						<? the_content();?>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
 
 						<img class="img-responsive" src="img/1600.jpg">
 
 						<div class="col-sm-5">
 							<div class="row">
-								<a class="btn-primary btn-lg btn-block btn-azul" href="<?php bloginfo('template_directory'); ?>/nuestro-colegio/galeria-multimedia/"><span class="glyphicon glyphicon-menu-left"></span>  Volver a Galería Multimedia</a>
+								<a class="btn-primary btn-lg btn-block btn-azul" href="galerias.html"><span class="glyphicon glyphicon-menu-left"></span>  Volver a Galería Multimedia</a>
 							</div>
 						</div>
 
@@ -62,7 +48,10 @@
 							<input type="mail" placeholder="Escribe aquí tu mail"></input>
 							<button type="submit" class="btn-primary btn-lg btn-block btn-suscribirse">Suscribirse</button>
 						</div>
+
+
 					</div>
+
 				</div>
 			</div>
 		</div>

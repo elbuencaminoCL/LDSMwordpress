@@ -122,7 +122,7 @@
                 ?>
                 <div class="col-md-4 col-xs-12">
                     <img class="img-responsive" src="<?php echo $imagen1; ?>" alt="<?php echo $title1; ?>" />
-                    <a class="btn-extra" href="<?php echo $enlace1; ?>"><?php echo $title1; ?></a>
+                    <a class="btn btn-black btn-lg" href="<?php echo $enlace1; ?>"><?php echo $title1; ?></a>
                 </div>
             <?php endif; wp_reset_postdata(); ?>
             <?php if( get_field('_titulo_banner_2') ): ?>
@@ -133,7 +133,7 @@
                 ?>
                 <div class="col-md-4 col-xs-12">
                     <img class="img-responsive" src="<?php echo $imagen2; ?>" alt="<?php echo $title2; ?>" />
-                    <a class="btn-extra" href="<?php echo $enlace2; ?>"><?php echo $title2; ?></a>
+                    <a class="btn btn-black btn-lg" href="<?php echo $enlace2; ?>"><?php echo $title2; ?></a>
                 </div>
             <?php endif; wp_reset_postdata(); ?>
             <?php if( get_field('_titulo_banner_3') ): ?>
@@ -144,7 +144,7 @@
                 ?>
                 <div class="col-md-4 col-xs-12">
                     <img class="img-responsive" src="<?php echo $imagen3; ?>" alt="<?php echo $title3; ?>" />
-                    <a class="btn-extra" href="<?php echo $enlace3; ?>"><?php echo $title3; ?></a>
+                    <a class="btn btn-black btn-lg" href="<?php echo $enlace3; ?>"><?php echo $title3; ?></a>
                 </div>
             <?php endif; wp_reset_postdata(); ?>
         </div>

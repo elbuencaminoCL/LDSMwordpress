@@ -22,7 +22,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 #accesos-directos a {height:210px;}
 #accesos-directos .btn-default .col-md-12 + .col-md-12 {text-transform:uppercase;}
 .buttonform {margin:25px 0 45px;}
-.wpcf7-form-control-wrap.mailpoetsignup {display:none;}
+.wpcf7-form-control-wrap.mailpoetsignup, .breaking-news-ticker-title {display:none;}
+#header .alerta .bnt-inner {
+    transform: skewX(30deg);
+    color: #FFF;
+    margin: 0px auto;
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+#header .alerta .bnt-inner ul li {font-size: 14px; color:#fff;}
 
 /******CLEARFIX******/
 .clearfix {*zoom:1; display:block;}

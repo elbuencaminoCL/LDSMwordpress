@@ -41,10 +41,10 @@
 						<div class="informacion clearfix">
 							<p class="breaking">
 								<span>i</span>
-								Breaking News:
+								Breang News:
 							</p>
 							<div class="alerta">
-								<p>POR RIESGO DE TERREMOTO EN EL DÍA DE MAÑANA LA INSTITUCIÓN PERMANECERÁ CERRADA</p>
+								<?php do_action('show_bnt'); ?>
 							</div>
 						</div>
 						<div class="collapse navbar-collapse colapsables">

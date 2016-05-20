@@ -436,7 +436,12 @@ h5 img{
 
 /* HEADER */
 
-#header{}
+#header{
+	z-index: 3000;
+	-moz-box-shadow: 0 4px 10px rgba(0,0,0,0.3);/*FF 3.5+*/
+	-webkit-box-shadow: 0 4px 10px rgba(0,0,0,0.3);/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 4px 10px rgba(0,0,0,0.3);/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
 #header .informacion{
   float: left;
   width: 89%;
@@ -456,7 +461,7 @@ h5 img{
     transform: skewX(-30deg);
     float: left;
     border-radius: 5px;
-    margin: 6px auto;
+    margin: 4px auto;
 }
 #header .alerta p{
     transform: skewX(30deg);
@@ -470,6 +475,23 @@ h5 img{
     float: left;
     margin: 10px 20px 10px 80px;
     font-style: italic;
+}
+#header .breaking-news-ticker {
+	border-radius: 5px;
+}
+#header .breaking-news-ticker ul{
+	padding: 0;
+}
+#header .breaking-news-ticker .bnt-inner #main-bnt ul li a{
+	color: #FFF;
+    margin: 0px auto;
+    padding: 0px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#header .breaking-news-ticker .controls{
+	display: none;
 }
 #header .breaking span{
     font-style: normal;
@@ -693,8 +715,7 @@ h5 img{
     padding: 0px 0px;
   }
   #header #top-menu ul li{
-    float: left;
-    width: 50%;
+  text-align: center;
   }
   #header #top-menu ul li a,
   #header #top-menu ul li a.active{
@@ -705,7 +726,6 @@ h5 img{
     width: 100%;
     text-align: center;
     background: transparent;
-    color: #FFF;
   }
   #header #top-menu ul li a.active{
     background: #C33;
@@ -714,8 +734,7 @@ h5 img{
     border-radius: 0px;
   }
   #header #top-menu ul li a:hover{
-    color: #249;
-    background: #FFF;
+    color: #fff;
   }
   #header .buscador{
     padding: 10px;
@@ -1157,6 +1176,7 @@ h5 img{
   transform: scale(1.1);
   position: absolute;
   z-index: 1;
+  top: 0;
 }
 .noticia-shadow{
   position: relative;
@@ -1349,11 +1369,13 @@ h5 img{
 }
 .detalle{
   float: left;
+  width: 100%;
 }
 .det-noticia{
   padding: 15px;
   border-left: 1px solid #249;
-  border-right: 1px solid #249; 
+  border-right: 1px solid #249;
+  min-height: 165px; 
 }
 .det-noticia h4{
   font-size: 16px;
@@ -2334,7 +2356,7 @@ footer .form-inline .form-control{
   background-color: #249;
   transition: all 0.4s ease-in-out;
   z-index: 100;
-  height: 400px;
+  height: 320px;
   width: 100%;
   margin: 0;
   display: block;
@@ -2343,7 +2365,7 @@ footer .form-inline .form-control{
 .contenedor-album:hover .mascara-info {
   opacity: 0.95;
   z-index: 500;
-  transform: translateY(-350px);
+  transform: translateY(-310px);
 }
 .mascara-info p, .mascara-info p a{
   color: #fff;
@@ -2372,7 +2394,7 @@ footer .form-inline .form-control{
   margin: 0px 0px 20px 0px;
 }
 .depto h2{
-  margin: 0px 0px 40px 0px;
+  margin: 70px 0px 10px 0px;
 }
 .selector{
   padding: 15px;
@@ -2996,7 +3018,6 @@ hr.current-step {
 
 .departamento .descripcion img{
   float: left;
-  width: 45%;
   margin: 0px 40px 30px 0px;
 }
 .departamento .descripcion{

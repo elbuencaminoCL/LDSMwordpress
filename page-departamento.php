@@ -8,113 +8,123 @@
 
 	<div id="main" class="clearfix">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<div id="foto-encabezado" class="absolute">
-				<?php if( get_field('_cabecera') ): ?>
-	    			<img src="<?php the_field('_cabecera'); ?>" class="img-responsive" />
-	    		<?php endif; ?>
-	    	</div>
-			<h2 class="titulo-seccion center relative"><span><? the_title();?></span></h2>
+		
+		<div class="titulo-1">
+			<h1><? the_title();?></h1>
+			<div class="pic-shadow"></div>
+			<?php 
+				$image = get_field('_cabecera');
+				$size = 'encabezado'; 
+				if( $image ) {
+					echo '<div class="img-absolute">'.wp_get_attachment_image( $image, $size ).'</div>';
+				}
+			?>
+		</div>
 
-			<div class="container relative">
-				<div class="center bajada">
-					<img src="img/iconos/ico-globo.svg"><br>
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+		<div class="container departamanto">
+			<div class="row">
+				
+				<?php
+					global $post;
+					if ( has_excerpt( $post->ID ) ) {
+						$excerpt= apply_filters('the_excerpt', get_post_field('post_excerpt', $post->ID));
+					    echo '<div class="clearfix">';
+					    	echo '<h2 class="intro-2">';
+					    		echo '<img src="'.get_bloginfo('template_directory').'/img/iconos/ico-globo.svg"><br>';
+								echo $excerpt;
+							echo '</h2>';
+						echo '</div>';
+					} 
+				?>
+				
+				<div class="clearfix descripcion">
+					<?php
+						if ( has_post_thumbnail() ) {
+							echo '<div class="col-sm-6 col-xs-12">';
+						    	echo get_the_post_thumbnail($post->ID, 'generica', array('class' => 'img-responsive'));
+							echo '</div>';
+							echo '<div class="col-md-6 col-sm-12 col-xs-12">';
+								echo get_the_content();
+							echo '</div>';
+						} else {
+							echo get_the_content();
+						}
+					?>
 				</div>
-
-				<div id="desc-departamento" class="clearfix">
-					<div class="row">
-						<div class="col-sm-6 col-xs-12">
-							<img class="img-responsive" src="img/departamento.jpg">
-						</div>
-						<div class="col-sm-6 col-xs-12">
-							<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-							<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-						</div>
-					</div>
+				
+				<div class="clearfix depto">
+					<h2>NOTICIAS DEL DEPARTAMENTO</h2>
 				</div>
-
-				<h3 class="upper titulo-tres clearfix">Press Release</h3>
-
+				
 				<div id="noticias" class="clearfix">
 					<div class="row">
-						<div class="col-sm-4 col-xs-12">
-							<div class="col-sm-12 hidden-xs">
+					
+						<?php 
+							$posts = get_field('_noticias_departamento');
+							$exc= apply_filters('the_excerpt', get_post_field('post_excerpt', $posts->ID));
+						if( $posts ): ?>
+							<?php foreach( $posts as $post): ?>
+							<?php setup_postdata( $post); ?>
+						<div class="col-md-4 col-xs-12">
+						
+							<div class="col-xs-12">
 								<div class="row">
-									<a class="block" href="#">
-										<img src="img/noticia-1.jpg" class="img-responsive" />
+								
+									<a href="<? the_permalink();?>">
+										<div class="gradiente"></div>
+										<?
+			                                if(has_post_thumbnail()){
+			                                    echo get_the_post_thumbnail($post->ID, 'news-related', array('class' => 'img-responsive'));
+											} else {
+												echo '<img src="'.get_bloginfo('template_directory').'/img/default-news.jpg" class="img-responsive" alt="Liceo Domingo Santa Maria" />';
+											}
+										?>
 									</a>
-								</div>
+								</div>									
 							</div>
 
-							<div class="col-sm-12 col-xs-12 detalle">						
-								<h4>
-									<a href="#">Ejemplo de titulo de noticia</a>
-								</h4>
-								<h5><img src="img/iconos/ico-small-calendar.svg">16 de Marzo de 2016</h5>
-								<p class="hidden-xs">Lorem ipsum dolor sit amet, sed an postea invenire, tale voluptatum vel no. Platonem prodesset scripserit eu pro, ut sea utamur dissentias. Odio atqui detracto sed ex, sit...</p>
-								<a class="ver-mas" href="#">Ver Noticia</a>			
+							<div class="detalle">
+								<div class="det-noticia">
+																
+									<h4><a href="<? the_permalink();?>"><?php the_title(); ?></a></h4>
+										
+									<h5><img src="<?php bloginfo('template_directory'); ?>/img/iconos/fechita.svg"><? the_date();?></h5>
+
+									<?
+						        		if($excerpt) {
+                                        	echo '<p class="">'.$excerpt.'</p>';
+                                        } else {
+                                        	echo '<p class="">'.content(20).'</p>';
+                                        }
+									?>
+
+								</div>
+
+								<a class="btn btn-default btn-block" href="<? the_permalink();?>">Ver Noticia</a>			
+
 							</div>
 						</div>
-						<div class="col-sm-4 col-xs-12">
-							<div class="col-sm-12 hidden-xs">
-								<div class="row">
-									<a class="block" href="#">
-										<img src="img/noticia-1.jpg" class="img-responsive" />
-									</a>
-								</div>
-							</div>
+						
+							<?php wp_reset_postdata(); ?>
+						    <?php endforeach; ?>
+						    
+						<?php endif; ?>
+							
+					</div><!--/.row-->
+				</div><!--/#noticias-->
+				
+				
+					
+			</div><!--/row-->			
+		</div><!--/departamento-->
+		
 
-							<div class="col-sm-12 col-xs-12 detalle">						
-								<h4>
-									<a href="#">Ejemplo de titulo de noticia</a>
-								</h4>
-								<h5><img src="img/iconos/ico-small-calendar.svg">16 de Marzo de 2016</h5>
-								<p class="hidden-xs">Lorem ipsum dolor sit amet, sed an postea invenire, tale voluptatum vel no. Platonem prodesset scripserit eu pro, ut sea utamur dissentias. Odio atqui detracto sed ex, sit...</p>
-								<a class="ver-mas" href="#">Ver Noticia</a>			
-							</div>
-						</div>						
-						<div class="col-sm-4 col-xs-12">
-							<div class="col-sm-12 hidden-xs">
-								<div class="row">
-									<a class="block" href="#">
-										<img src="img/noticia-1.jpg" class="img-responsive" />
-									</a>
-								</div>
-								
-							</div>
-
-							<div class="col-sm-12 col-xs-12 detalle">
-															
-								<h4>
-									<a href="#">Ejemplo de titulo de noticia</a>
-								</h4>
-								
-								<h5><img src="img/iconos/ico-small-calendar.svg">16 de Marzo de 2016</h5>
-
-								<p class="hidden-xs">Lorem ipsum dolor sit amet, sed an postea invenire, tale voluptatum vel no. Platonem prodesset scripserit eu pro, ut sea utamur dissentias. Odio atqui detracto sed ex, sit...</p>
-
-								<a class="ver-mas" href="#">Ver Noticia</a>			
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div><!-- ROW -->					
-			</div>
-
-		</div>
-		<!--/main-->
-	<?php endwhile; else: ?>
-            <div class="col-xs-12">
-                <p class="textos">Lo sentimos, el contenido que buscas no se encuentra disponible.</p>
-            </div>
-        <?php endif; ?>
-	</div>
-	<!--/main-->
+		<?php endwhile; else: ?>
+        <div class="col-xs-12">
+        	<p class="textos">Lo sentimos, el contenido que buscas no se encuentra disponible.</p>
+        </div>
+		<?php endif; ?>
+        
+        
+	</div><!--/main-->
 <?php get_footer(); ?>
